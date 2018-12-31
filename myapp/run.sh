@@ -1,1 +1,1 @@
-DEBUG=myapp:* npm start
+sudo DEBUG=myapp:* npm start
