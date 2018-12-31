@@ -22,6 +22,8 @@ function loadIndexTemplate(req, res, next) {
 
 // render the index page template
 function renderIndexTemplate(req, res, next) {
+  var hostname = os.hostname();
+  res.pageContent = mustache.render(res.pageContent, {host: hostname});
   next();
 } 
 
