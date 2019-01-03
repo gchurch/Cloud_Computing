@@ -8,6 +8,7 @@ var logger = require('morgan');
 var mustacheExpress = require('mustache-express');
 
 var indexRouter = require('./routes/index');
+var imageRouter = require('./routes/images');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use the routers
 app.use('/', indexRouter);
+app.use('/images', imageRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
