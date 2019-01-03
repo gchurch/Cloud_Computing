@@ -1,1 +1,1 @@
-kubectl set image deployments/myapp-deployment myapp=geochu/myapp:latestt
+kubectl set image deployments/myapp-deployment myapp=geochu/myapp:latest

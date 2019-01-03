@@ -13,6 +13,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// disable for security purposes
+app.disable('x-powered-by');
+
 // using the mustache template engine
 app.engine('mustache', mustacheExpress());
 

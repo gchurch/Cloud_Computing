@@ -16,10 +16,9 @@ function getImage(req, res, next) {
   var params = {Bucket: bucketName, Key: imageName};
   s3.getObject(params, function(err, data) {
     if(err) {
-      console.log(err);
+      next(err);
     }
     else {
-      console.log("Successfully downloaded image\n");
       res.imageData = data.Body;
       next();
     }
@@ -29,10 +28,10 @@ function getImage(req, res, next) {
 /* GET home page. */
 router.get('/:imageName', getImage, function(req, res, next) {
   res.writeHead(200, {
-     'Content-Type': 'image/png',
-     'Content-Length': res.imageData.length
-   });
-   res.end(res.imageData); 
+    'Content-Type': 'image/png',
+    'Content-Length': res.imageData.length
+  });
+  res.end(res.imageData);
 });
 
 module.exports = router;
