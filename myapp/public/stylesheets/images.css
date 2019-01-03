@@ -1,0 +1,25 @@
+#images {
+  overflow: hidden;
+}
+
+#images > a > div {
+  color: black;
+  text-align: center;
+  border: 1px solid black;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin: none;
+  padding: none;
+}
+
+#images > a {
+  display: inline-block;
+  width: 23%;
+  margin: 2% 5% 2% 5%;
+}
+
+#images img {
+  max-height: 250px;
+  max-width: 100%;
+}

@@ -9,9 +9,11 @@ var s3 = new AWS.S3();
 var express = require('express');
 var router = express.Router();
 
-var params = {Bucket: 'geochu-images', Key: 'westminster.jpg'};
+var bucketName = 'geochu-images';
 
 function getImage(req, res, next) {
+  var imageName = req.params.imageName;
+  var params = {Bucket: bucketName, Key: imageName};
   s3.getObject(params, function(err, data) {
     if(err) {
       console.log(err);
@@ -25,7 +27,7 @@ function getImage(req, res, next) {
 }
 
 /* GET home page. */
-router.get('/', getImage, function(req, res, next) {
+router.get('/:imageName', getImage, function(req, res, next) {
   res.writeHead(200, {
      'Content-Type': 'image/png',
      'Content-Length': res.imageData.length

@@ -29,7 +29,7 @@ function renderIndexTemplate(req, res, next) {
 
 /* GET home page. */
 router.get('/', loadIndexTemplate, renderIndexTemplate, function(req, res, next) {
-  res.render('layout', { content: res.pageContent });
+  res.render('layout', { stylesheets: [{href: "images.css"}], content: res.pageContent });
 });
 
 module.exports = router;
