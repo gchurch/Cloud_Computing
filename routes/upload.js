@@ -1,5 +1,12 @@
 "use strict"
 
+// Load aws sdk
+var AWS = require('aws-sdk');
+// Create an S3 client
+var s3 = new AWS.S3();
+// Name of the bucket to store the uploaded image
+var bucketName = 'myapp-image-storage';
+
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
@@ -88,13 +95,23 @@ function uploadImageToBucket(req, res, next) {
   if(res.canUpload) {
 
     //code to upload image to S3 bucket
-    done();
+    var params = {
+      Body: req.file.buffer,
+      Bucket: bucketName,
+      Key: req.file.originalname
+    }
+    s3.putObject(params, done);
 
     //callback function
-    function done() {
-      console.log("Uploaded image.");
-      res.uploaded = true;
-      next();
+    function done(err, data) {
+      if(err) {
+        console.log(err);
+        next(err);
+      } else {
+        console.log("Uploaded image.");
+        res.uploaded = true;
+        next();
+      }
     }
   }
   else {
