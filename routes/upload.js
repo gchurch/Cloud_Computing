@@ -67,32 +67,59 @@ router.get('/succeeded', loadUploadSucceededTemplate, function(req, res, next) {
 });
 
 
-//add provided image and info to the database
-function addImageToDatabase(req, res, next) {
-  //if an image was provided then add an entry to the database
+function checkData(req, res, next) {
   if(req.file && req.body.image_title.length <= imageTitleMaxLength) {
     //if no title is given then call the image "untitled"
     if(req.body.image_title == "") {
       req.body.image_title = "untitled";
     }
+    res.canUpload = true;
+    console.log("Can upload image.");
+  }
+  else {
+    res.canUpload = false;
+    console.log("Can't upload image.");
+  }
+  next();
+}
 
-    //code to upload to database
+
+function uploadImageToBucket(req, res, next) {
+  if(res.canUpload) {
+
+    //code to upload image to S3 bucket
+    done();
 
     //callback function
     function done() {
-      console.log(res.username + " uploaded an image.");
-      res.successfulImageUpload = true;
+      console.log("Uploaded image.");
+      res.uploaded = true;
       next();
     }
-
-    console.log("Adding image to database");
-    console.log(req.file);
-
-    next();
   }
   else {
-    console.log("Not adding image to database");
-    res.successfulImageUpload = false;
+    res.uploaded = false;
+    console.log("Didn't upload image.");
+    next();
+  }
+}
+
+function addEntryToDatabase(req, res, next) {
+  if(res.canUpload && res.uploaded) {
+
+    //code to add entry to database
+    done();
+
+    //callback function
+    function done() {
+      console.log("Added database entry.");
+      res.addedEntry = true;
+      next();
+    }
+  }
+  else {
+    res.addedEntry = false;
+    console.log("Didn't add entry to database.");
     next();
   }
 }
@@ -100,7 +127,7 @@ function addImageToDatabase(req, res, next) {
 //redirect to the appropriate page
 function redirect(req, res, next) {
   //redirect to the appropriate page
-  if(res.successfulImageUpload) {
+  if(res.uploaded && res.addedEntry) {
     res.redirect('/upload/succeeded');
   } else {
     res.redirect('/upload/failed');
@@ -108,6 +135,6 @@ function redirect(req, res, next) {
 }
 
 //POST request to upload an image
-router.post('/post-image', upload.single('image'), addImageToDatabase, redirect);
+router.post('/post-image', upload.single('image'), checkData, uploadImageToBucket, addEntryToDatabase, redirect);
 
 module.exports = router;
