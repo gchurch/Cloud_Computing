@@ -1,1 +1,1 @@
-docker push iad.ocir.io/geochu/cw/myapp:v1
+docker push iad.ocir.io/geochu/cw/myapp:v2
