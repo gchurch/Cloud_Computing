@@ -1,1 +1,1 @@
-kubectl set image deployments/myapp-deployment myapp=iad.ocir.io/geochu/cw/myapp:v1
+kubectl set image deployments/myapp-deployment myapp=lhr.ocir.io/geochu/cw/myapp:v1

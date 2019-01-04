@@ -9,7 +9,7 @@ var s3 = new AWS.S3();
 var express = require('express');
 var router = express.Router();
 
-var bucketName = 'geochu-images';
+var bucketName = 'myapp-image-storage';
 
 function getImage(req, res, next) {
   var imageName = req.params.imageName;
