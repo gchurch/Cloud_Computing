@@ -16,6 +16,7 @@ function getImage(req, res, next) {
   var params = {Bucket: bucketName, Key: imageName};
   s3.getObject(params, function(err, data) {
     if(err) {
+      console.log(err);
       next(err);
     }
     else {
