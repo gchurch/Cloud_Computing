@@ -1,39 +1,11 @@
 <h1>Index</h1>
 <p>Host name: {{host}}</p>
 <div id='images'>
-  <a href='/images/westminster.jpg'>
+  {{#images}}<a href='/images/{{info.url}}'>
     <div>
-      <div><i>Westminster</i></div>
-      <div>by <b>George</b></div>
-      <div class='image'><img src='/images/westminster.jpg'/></div>
+      <div><i>{{title}}</i></div>
+      <div>by <b>{{author}}</b></div>
+      <div class='image'><img src='/images/{{info.url}}'/></div>
     </div>
-  </a>
-  <a href='/images/bridge.jpeg'>
-    <div>
-      <div><i>Bridge</i></div>
-      <div>by <b>George</b></div>
-      <div class='image'><img src='/images/bridge.jpeg'/></div>
-    </div>
-  </a>
-  <a href='/images/castle.jpeg'>
-    <div>
-      <div><i>Castle</i></div>
-      <div>by <b>George</b></div>
-      <div class='image'><img src='/images/castle.jpeg'/></div>
-    </div>
-  </a>
-  <a href='/images/stone_henge.jpg'>
-    <div>
-      <div><i>Stone Henge</i></div>
-      <div>by <b>George</b></div>
-      <div class='image'><img src='/images/stone_henge.jpg'/></div>
-    </div>
-  </a>
-  <a href='/images/bridge1.JPG'>
-    <div>
-      <div><i>Another bridge</i></div>
-      <div>by <b>George</b></div>
-      <div class='image'><img src='/images/bridge1.JPG'/></div>
-    </div>
-  </a>
+  </a>{{/images}}
 </div>

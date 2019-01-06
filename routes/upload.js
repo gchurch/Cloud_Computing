@@ -144,7 +144,7 @@ function addEntryToDatabase(req, res, next) {
         "author": req.body.author,
         "title": req.body.image_title,
         "info":{
-            "url": "test.jpg",
+            "url": req.file.originalname,
             "description": "."
         }
       }
