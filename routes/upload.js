@@ -2,6 +2,15 @@
 
 // Load aws sdk
 var AWS = require('aws-sdk');
+
+AWS.config.update({
+  region: "eu-west-2"
+})
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+var tableName = "myapp-images";
+
 // Create an S3 client
 var s3 = new AWS.S3();
 // Name of the bucket to store the uploaded image
@@ -17,6 +26,7 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 
 const imageTitleMaxLength = 30;
+const authorMaxLength = 20;
 
 //load the index page content
 function loadUploadTemplate(req, res, next) {
@@ -55,7 +65,7 @@ function loadUploadSucceededTemplate(req, res, next) {
 }
 
 function renderUploadTemplate(req, res, next) {
-  res.pageContent = mustache.render(res.pageContent, {imageTitleMaxLength: imageTitleMaxLength});
+  res.pageContent = mustache.render(res.pageContent, {imageTitleMaxLength: imageTitleMaxLength, authorMaxLength: authorMaxLength});
   next();
 }
 
@@ -75,10 +85,13 @@ router.get('/succeeded', loadUploadSucceededTemplate, function(req, res, next) {
 
 
 function checkData(req, res, next) {
-  if(req.file && req.body.image_title.length <= imageTitleMaxLength) {
+  if(req.file && req.body.image_title.length <= imageTitleMaxLength && req.body.author.length <= authorMaxLength) {
     //if no title is given then call the image "untitled"
     if(req.body.image_title == "") {
       req.body.image_title = "untitled";
+    }
+    if(req.body.author == "") {
+      req.body.author = "anonymous";
     }
     res.canUpload = true;
     console.log("Can upload image.");
@@ -125,14 +138,30 @@ function addEntryToDatabase(req, res, next) {
   if(res.canUpload && res.uploaded) {
 
     //code to add entry to database
-    done();
+    var params = {
+      TableName:tableName,
+      Item:{
+        "author": req.body.author,
+        "title": req.body.image_title,
+        "info":{
+            "url": "test.jpg",
+            "description": "."
+        }
+      }
+    };
+    docClient.put(params, done);
 
     //callback function
-    function done() {
-      console.log("Added database entry.");
-      res.addedEntry = true;
+    function done(err, data) {
+      if (err) {
+        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+        console.log("Added database entry.");
+        res.addedEntry = true;
+      }
       next();
     }
+
   }
   else {
     res.addedEntry = false;
