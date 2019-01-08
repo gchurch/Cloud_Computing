@@ -1,1 +1,1 @@
-docker push lhr.ocir.io/geochu/cw/myapp:v3
+docker push lhr.ocir.io/geochu/cw/myapp:v4
