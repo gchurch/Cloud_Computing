@@ -55,14 +55,14 @@ function getImageData(req, res, next) {
 
 // render the index page template
 function renderIndexTemplate(req, res, next) {
-  var hostname = os.hostname();
-  res.pageContent = mustache.render(res.pageContent, {host: hostname, images: res.imagesData});
+  res.pageContent = mustache.render(res.pageContent, {images: res.imagesData});
   next();
 } 
 
 /* GET home page. */
 router.get('/', loadIndexTemplate, getImageData, renderIndexTemplate, function(req, res, next) {
-  res.render('layout', { stylesheets: [{href: "images.css"}], content: res.pageContent });
+  var hostname = os.hostname();
+  res.render('layout', { stylesheets: [{href: "images.css"}], host: hostname, content: res.pageContent });
 });
 
 module.exports = router;

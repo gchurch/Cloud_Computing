@@ -1,17 +1,17 @@
 <h1>Upload an Image!</h1>
 <form action='/upload/post-image' method='POST' enctype='multipart/form-data'>
-  <div>
+  <div class="largertext">
+    <input type='file' name='image'>
+  </div>
+  <div class="largertext">
     Image title:
     <input type='text' name='image_title' maxlength="{{imageTitleMaxLength}}">
   </div>
-  <div>
-    Author:
+  <div class="largertext">
+    Your name:
     <input type='text' name='author' maxlength="{{authorMaxLength}}">
   </div>
-  <div>
-    <input type='file' name='image'>
-  </div>
-  <div>
+  <div class="largertext">
     <input type='submit' value='Submit'>
   </div>
 </form>

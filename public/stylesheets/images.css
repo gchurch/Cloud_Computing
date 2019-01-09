@@ -3,6 +3,7 @@
 }
 
 #images > a > div {
+  border-radius: 8px;
   color: black;
   text-align: center;
   border: 1px solid black;

@@ -16,6 +16,7 @@ var s3 = new AWS.S3();
 // Name of the bucket to store the uploaded image
 var bucketName = 'myapp-image-storage';
 
+var os = require("os");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
@@ -73,14 +74,17 @@ function renderUploadTemplate(req, res, next) {
 var stylesheets = [{href: "upload.css"}];
 var scripts = [];
 router.get('/', loadUploadTemplate, renderUploadTemplate, function(req, res, next) {
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
+  var hostname = os.hostname();
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
 });
 router.get('/failed', loadUploadFailedTemplate, function(req, res, next) {
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
+  var hostname = os.hostname();
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
 });
 
 router.get('/succeeded', loadUploadSucceededTemplate, function(req, res, next) {
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
+  var hostname = os.hostname();
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
 });
 
 

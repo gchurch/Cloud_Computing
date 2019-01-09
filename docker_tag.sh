@@ -1,1 +1,1 @@
-docker tag myapp lhr.ocir.io/geochu/cw/myapp:v4
+docker tag myapp lhr.ocir.io/geochu/cw/myapp:v6

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: myapp
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
       containers:
       - name: myapp
     # enter the path to your image, be sure to include the correct region prefix    
-        image: lhr.ocir.io/geochu/cw/myapp:v4
+        image: lhr.ocir.io/geochu/cw/myapp:v6
         ports:
         - containerPort: 80
       imagePullSecrets:
