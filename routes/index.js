@@ -61,8 +61,7 @@ function renderIndexTemplate(req, res, next) {
 
 /* GET home page. */
 router.get('/', loadIndexTemplate, getImageData, renderIndexTemplate, function(req, res, next) {
-  var hostname = os.hostname();
-  res.render('layout', { stylesheets: [{href: "images.css"}], host: hostname, content: res.pageContent });
+  res.render('layout', { stylesheets: [{href: "images.css"}], content: res.pageContent });
 });
 
 module.exports = router;

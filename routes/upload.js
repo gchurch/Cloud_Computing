@@ -74,17 +74,14 @@ function renderUploadTemplate(req, res, next) {
 var stylesheets = [{href: "upload.css"}];
 var scripts = [];
 router.get('/', loadUploadTemplate, renderUploadTemplate, function(req, res, next) {
-  var hostname = os.hostname();
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
 });
 router.get('/failed', loadUploadFailedTemplate, function(req, res, next) {
-  var hostname = os.hostname();
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
 });
 
 router.get('/succeeded', loadUploadSucceededTemplate, function(req, res, next) {
-  var hostname = os.hostname();
-  res.render('layout', {stylesheets: stylesheets, scripts: scripts, host: hostname, content: res.pageContent});
+  res.render('layout', {stylesheets: stylesheets, scripts: scripts, content: res.pageContent});
 });
 
 
