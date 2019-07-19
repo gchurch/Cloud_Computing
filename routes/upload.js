@@ -179,6 +179,7 @@ function redirect(req, res, next) {
   } else {
     res.redirect('/upload/failed');
   }
+  next();
 }
 
 //POST request to upload an image
