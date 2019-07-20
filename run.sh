@@ -1,1 +1,1 @@
-sudo DEBUG=myapp:* npm start
+sudo nodemon DEBUG=myapp:* npm start
