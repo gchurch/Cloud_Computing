@@ -9,7 +9,6 @@ var mustacheExpress = require('mustache-express');
 var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-var imageRouter = require('./routes/images');
 var uploadRouter = require('./routes/upload');
 
 var app = express();
@@ -32,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use the routers
 app.use('/', indexRouter);
-app.use('/images', imageRouter);
 app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler

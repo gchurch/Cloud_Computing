@@ -1,10 +1,10 @@
 <p><a href='/upload'>Share your own image!</a></p>
 <div id='images'>
-  {{#images}}<a href='/images/{{info.url}}'>
+  {{#images}}<a href='http://myapp-image-storage.s3-website.eu-west-2.amazonaws.com/{{info.url}}'>
     <div>
       <div><i>{{title}}</i></div>
       <div>by <b>{{author}}</b></div>
-      <div class='image'><img src='/images/{{info.url}}'/></div>
+      <div class='image'><img src='http://myapp-image-storage.s3-website.eu-west-2.amazonaws.com/{{info.url}}'/></div>
     </div>
   </a>{{/images}}
 </div>
