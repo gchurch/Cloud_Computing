@@ -16,7 +16,6 @@ var s3 = new AWS.S3();
 // Name of the bucket to store the uploaded image
 var bucketName = 'myapp-image-storage';
 
-var os = require("os");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
