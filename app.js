@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mustacheExpress = require('mustache-express');
 var bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
 var indexRouter = require('./routes/index');
 var uploadRouter = require('./routes/upload');
