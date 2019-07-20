@@ -21,6 +21,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const mustache = require("mustache");
+const mime = require('mime');
 
 const multer = require('multer');
 var storage = multer.memoryStorage();
@@ -112,7 +113,8 @@ function uploadImageToBucket(req, res, next) {
     var params = {
       Body: req.file.buffer,
       Bucket: bucketName,
-      Key: req.file.originalname
+      Key: req.file.originalname,
+      ContentType: mime.getType(req.file.originalname)
     }
     s3.putObject(params, done);
 
@@ -179,7 +181,6 @@ function redirect(req, res, next) {
   } else {
     res.redirect('/upload/failed');
   }
-  next();
 }
 
 //POST request to upload an image
