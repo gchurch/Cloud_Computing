@@ -115,7 +115,7 @@ function uploadImageToBucket(req, res, next) {
       Key: req.file.originalname,
       ContentType: mime.getType(req.file.originalname)
     }
-    s3.putObject(params, done);
+    s3.upload(params, done);
 
     //callback function
     function done(err, data) {
