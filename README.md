@@ -4,7 +4,7 @@
 
 This project was created for my coursework for the Cloud Computing unit at the University of Bristol. I created a simple website that allows visitors to upload an image that will then appear on the home page of the website. The website is run using various AWS services.
 
-The website can be found at the following address: http://shareimages-env.ptfpgb7h3w.eu-west-2.elasticbeanstalk.com/
+The website is no longer deployed on AWS services as I have closed my account.
 
 ## Web Server
 
