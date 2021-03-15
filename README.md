@@ -8,7 +8,7 @@ The website is no longer deployed on AWS services as I have closed my account.
 
 ## Web Server
 
-The website uses a Node.js web server with the Express web framework. The AWS Node.js SDK is used in order for the web server to interact with the AWS services.
+The back end uses a Node.js web server with the Express web framework. The AWS Node.js SDK is used in order for the web server to interact with the AWS services.
 
 ## AWS Services
 
