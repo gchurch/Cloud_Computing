@@ -2,7 +2,7 @@
 
 ## Description
 
-This project was created for my coursework for the Cloud Computing unit at the University of Bristol. In this project I created a website that runs on various AWS services that is automatically scalable. The website that I created simply allows visitors to upload an image that will then appear on the home page of the website.
+This project was created for my coursework for the Cloud Computing unit at the University of Bristol. In this project I created a website that runs on various AWS services that is automatically scalable. The website that I created simply allows visitors to upload an image that will then appear on the home page of the website alongside other uploaded images.
 
 The website is no longer deployed on AWS services as I have closed my account.
 
